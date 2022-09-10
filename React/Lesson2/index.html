@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>React Tutorial</title>
+</head>
+<body>
+    <h1>Web Page 1</h1>
+
+    <div id="banner">
+
+    </div>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+    <script type="text/babel">
+        const Banner = () => {
+            const title = "Welcome to my webpage"
+            const subtitle = "Work in progress"
+            const link = "https://www.google.com"
+            const handleClick = (e) => {
+                console.log(e);
+            }
+            return (
+                <div>
+                    <h2>{title}</h2>
+                    <p>{subtitle}</p>
+                    <button onClick={handleClick} >Click me </button>
+                    <a href = {link}>Visit site</a>
+                </div>
+            )
+        }
+        const container = document.getElementById('banner');
+        const root = ReactDOM.createRoot(container); 
+        root.render(<Banner/>)
+        // ReactDOM.render(<Banner />, document.getElementById('banner'));
+    </script>
+</body>
+</html>
