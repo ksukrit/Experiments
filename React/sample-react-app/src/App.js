@@ -3,17 +3,17 @@ import './App.css';
 import {useState} from 'react';
 import Title from './components/Title';
 import Modal from './components/Modal';
+import EventsList from './components/EventsList';
+import NewEventForm from './components/NewEventForm';
 
 function App() {
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const [showEvents, setShowEvents] = useState(true)
   const [events, setEvents] = useState([
     {title: "mario birthday bash",id:1},
     {title: "bowser's live stream",id:2},
     {title: "race on moo moo farm",id:3}
   ]) 
-
-  console.log(showModal)
 
   const changeName = () => {
     console.log(document.getElementById("data").value)
@@ -62,20 +62,15 @@ function App() {
         <button onClick={changeName}>Add item</button>
       </div>
 
-      {showEvents && events?.map( (event) => (
-          <div key={event.id}>
-            <div>
-              <h2>{event.title}</h2>
-              <button onClick={ () => removeLog(event.id)}>Remove</button>
-            </div>
-          </div>
-          )
-        )
-      }
+    {showEvents && <EventsList events={events} removeLog={removeLog} />}
+    
     {showModal && <Modal handleClose={handleClose}>
-        <h2>10% OFF Coupon code</h2>
-        <p> Use the code 10OFF at checkout</p>
+        <NewEventForm events={events} setEvents={setEvents} showModal={setShowModal}/>
     </Modal>} 
+
+    <div>
+      <button onClick={() => setShowModal(true)}>Show modal</button>
+    </div>
     </div>
     
   );
